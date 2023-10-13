@@ -1,0 +1,45 @@
+<%- include('header') -%>
+<%- include('navbar') -%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Game Create/Edit</h2>
+            <form>
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="developer">Developer:</label>
+                    <input type="text"  class="form-control" id="developer" name="developer" required>
+                </div>
+
+                <div class="form-group">
+                <label for="cars">Choose a platform:</label>
+                <select name="cars" id="cars" class="form-control">
+                    <option value="PlayStation 4">PlayStation 4</option>
+                    <option value="Xbox">Xbox</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dlc">DLC:</label>
+                    <input type="text" class="form-control" id="dlc" name="dlc">
+                </div>
+
+                <div class="form-group">
+                    <label for="releaseDate">Release Date:</label>
+                    <input type="date" class="form-control" id="releaseDate" name="releaseDate" required>
+                </div>
+
+
+                <a class="btn btn-primary" href="/">save</a>
+                <a class="btn btn-link" href="/">cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('footer') -%>

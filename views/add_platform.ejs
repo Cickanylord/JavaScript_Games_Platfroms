@@ -1,0 +1,41 @@
+<%- include('header') -%>
+<%- include('navbar') -%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Platform Create/Edit</h2>
+            <form>
+                <div class="form-group">
+                    <label for="platformName">Platform Name:</label>
+                    <input type="text" class="form-control" id="platformName" name="platformName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="manufacturer">Manufacturer:</label>
+                    <input type="text" class="form-control" id="manufacturer" name="manufacturer" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="controllerCount">No. of Controllers:</label>
+                    <input type="number" class="form-control" id="controllerCount" name="controllerCount" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dlc">DLC:</label>
+                    <input type="text" class="form-control" id="dlc" name="dlc">
+                </div>
+
+                <div class="form-group">
+                    <label for="manufactureDate">Manufacture Date:</label>
+                    <input type="date" class="form-control" id="manufactureDate" name="manufactureDate" required>
+                </div>
+
+
+                <a class="btn btn-primary" href="/">save</a>
+                <a class="btn btn-link" href="/">cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('footer') -%>

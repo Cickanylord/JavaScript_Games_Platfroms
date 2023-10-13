@@ -1,0 +1,62 @@
+HTML oldalak
+
+index.html - nézett a platformokról
+add_platform.html -
+edit_platform.html -
+game.html -
+Add_game.html -
+edit_game.html -
+view_platform.html -
+
+Routing
+///////////////////////////////////////////////////////////////////////
+GET  /                                      - index.html //platformok
+        getPlatformsMW
+        renderMW(index.html)
+
+GET  /platforms/edit/:platform_id           - edit_platform.html
+        getPlatformsMW
+        SavePlatformsMW
+        renderMW(edit_platform.html)
+
+GET, POST /platforms/new                     - add_platform.html
+        SavePlatformsMW
+        renderMW(add_platform.html)
+
+GET  /platforms/delete/:platform_id
+        getPlatformsMW
+        delPlatformsMW
+
+///////////////////////////////////////////////////////////////////////
+GET  /platform/games/:platform_id           - view_platform.html
+        getGamesMW
+        renderMW(view_platform.html)
+
+GET  /Platform/edit/:platform_id/:game_id   - edit_game.html
+        getGameMW
+        SaveGameMW
+        renderMW(edit_game.html)
+
+POST /Platform/new/:platform_id             - add_game.html
+        SaveGameMW
+        renderMW(add_game.html)
+
+GET  /Platform/delete/:platform_id/:game_id
+        delGamesMW
+
+///////////////////////////////////////////////////////////////////////
+GET  /game                                  - game.html
+        getGamesMW
+        renderMW(game.html)
+GET  /game/edit/:game_id                    - edit_game.html
+        getGameMW
+        SaveGameMW
+        renderMW(edit_game.html)
+POST /game/new                              - add_game.html
+        SaveGameMW
+        renderMW(add_game.html)
+GET  /game/delete/:game_id
+        getGameMW
+        deleteGamesMW
+
+
