@@ -9,7 +9,16 @@ const SaveGameMW = require('../middleware/games/SaveGameMW');
 const delGamesMW = require('../middleware/games/delGamesMW');
 
 module.exports = function (app) {
-    const objRepo = {};
+    const objRepo = {
+        DB: {
+            platforms: [{_id:1, PlatformName: "PSP", manufacturer: "Sony",controllerCount: "1" ,manufactureDate: '2016-10-14' },
+                        {_id:14, PlatformName: "PS4", manufacturer: "Sony",controllerCount: "3" ,manufactureDate:'2023-10-14' }],
+            games :[{_id: 1,platformID: 1,title: 'The Legend of Zelda: Breath of the Wild', platform: 'Nintendo Switch', developer: 'Nintendo', dlc: 'Yes', releaseDate: 'March 3, 2017'},
+                    {_id: 2,platformID: 14,title: 'Super Mario Odyssey', platform: 'Nintendo Switch', developer: 'Nintendo', dlc: 'Yes', releaseDate: 'March 3, 2017'},
+                    {_id: 3,platformID: 1,title: 'Horizon Zero Dawn', platform: 'PS4', developer: 'Guerrilla Games', dlc: 'Yes', releaseDate: 'March 3, 2017'}]
+        }
+
+    };
 
     /////////////////////////////////
     //platforms
@@ -36,10 +45,10 @@ module.exports = function (app) {
     /////////////////////////////////
     app.get('/platform/games/:platform_id',
         getGamesMW(objRepo),
-        renderMW(objRepo, 'view_platform'));
+        renderMW(objRepo, 'game'));
 
     app.use('/Platform/edit/:platform_id/:game_id',
-        getGameMW(objRepo),
+        getGamesMW(objRepo),
         SaveGameMW(objRepo),
         renderMW(objRepo, 'edit_game'));
 
