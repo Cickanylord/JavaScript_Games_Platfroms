@@ -13,7 +13,6 @@ module.exports = function (objectrepository) {
             (typeof req.body.manufacturer === 'undefined') ||
             (typeof req.body.controllerCount === 'undefined') ||
             (typeof req.body.manufactureDate === 'undefined')) {
-            console.log('itt: ' +req.body.platformName);
             return next();
         }
 
@@ -31,12 +30,15 @@ module.exports = function (objectrepository) {
 
         };
 
+        const platformId = req.params.platform_id;
+        if (platformId !== undefined) {
+            platform._id = platformId;
+            DB.platforms = DB.platforms.filter(p => p._id.toString() !== platformId.toString());
+        }
 
-        objectrepository.DB.platforms.push(platform);
+
+        DB.platforms.push(platform);
         console.log(platform);
         return res.redirect('/');
-
-
-
     };
 };

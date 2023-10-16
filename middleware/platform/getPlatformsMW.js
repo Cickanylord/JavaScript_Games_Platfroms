@@ -16,10 +16,10 @@ module.exports = function (objectrepository) {
             if (platform === undefined) {
                 return res.redirect('/');
             } else {
-                console.log(platform);
                 res.locals.platforms = platform;
             }
         }
+        console.log('platforms: ' + res.locals.platforms);
         next();
     };
 };

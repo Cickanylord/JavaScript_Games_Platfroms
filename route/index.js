@@ -4,7 +4,6 @@ const SavePlatformsMW = require('../middleware/platform/SavePlatformsMW');
 const delPlatformsMW = require('../middleware/platform/delPlatformsMW');
 
 const getGamesMW = require('../middleware/games/getGamesMW');
-const getGameMW = require('../middleware/games/getGameMW');
 const SaveGameMW = require('../middleware/games/SaveGameMW');
 const delGamesMW = require('../middleware/games/delGamesMW');
 
@@ -13,9 +12,9 @@ module.exports = function (app) {
         DB: {
             platforms: [{_id:1, PlatformName: "PSP", manufacturer: "Sony",controllerCount: "1" ,manufactureDate: '2016-10-14' },
                         {_id:14, PlatformName: "PS4", manufacturer: "Sony",controllerCount: "3" ,manufactureDate:'2023-10-14' }],
-            games :[{_id: 1,platformID: 1,title: 'The Legend of Zelda: Breath of the Wild', platform: 'Nintendo Switch', developer: 'Nintendo', dlc: 'Yes', releaseDate: 'March 3, 2017'},
-                    {_id: 2,platformID: 14,title: 'Super Mario Odyssey', platform: 'Nintendo Switch', developer: 'Nintendo', dlc: 'Yes', releaseDate: 'March 3, 2017'},
-                    {_id: 3,platformID: 1,title: 'Horizon Zero Dawn', platform: 'PS4', developer: 'Guerrilla Games', dlc: 'Yes', releaseDate: 'March 3, 2017'}]
+            games :[{_id: 1,platformID: 1,title: 'The Legend of Zelda: Breath of the Wild', platform: 'Nintendo Switch', developer: 'Nintendo', dlc: 'Yes', releaseDate: '2017-03-03'},
+                    {_id: 2,platformID: 14,title: 'Super Mario Odyssey', platform: 'Nintendo Switch', developer: 'Nintendo', dlc: 'Yes', releaseDate: '2007-09-03'},
+                    {_id: 3,platformID: 1,title: 'Horizon Zero Dawn', platform: 'PS4', developer: 'Guerrilla Games', dlc: 'Yes', releaseDate: '2012-12-26'}]
         }
 
     };
@@ -37,7 +36,7 @@ module.exports = function (app) {
         renderMW(objRepo, 'add_platform'));
 
     app.get('/platforms/delete/:platform_id',
-        getPlatformsMW(objRepo));
+        delPlatformsMW(objRepo));
 
 
     /////////////////////////////////
@@ -69,7 +68,7 @@ module.exports = function (app) {
         renderMW(objRepo, 'game'));
 
     app.use('/games/edit/:game_id',
-        getGameMW(objRepo),
+        getGamesMW(objRepo),
         SaveGameMW(objRepo),
         renderMW(objRepo, 'add_game'));
 
@@ -78,7 +77,7 @@ module.exports = function (app) {
         renderMW(objRepo, 'add_game'));
 
     app.get('/games/delete/:game_id',
-        getGameMW(objRepo),
+        getGamesMW(objRepo),
         delGamesMW(objRepo));
 
 
