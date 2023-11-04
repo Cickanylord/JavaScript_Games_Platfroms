@@ -7,7 +7,11 @@ const getGamesMW = require('../middleware/games/getGamesMW');
 const SaveGameMW = require('../middleware/games/SaveGameMW');
 const delGamesMW = require('../middleware/games/delGamesMW');
 
+const GameModel = require('../models/game');
+const PlatformModel = require('../models/platform');
+
 module.exports = function (app) {
+
     const objRepo = {
         DB: {
             platforms: [{_id:1, PlatformName: "PSP", manufacturer: "Sony",controllerCount: "1" ,manufactureDate: '2016-10-14' },
@@ -17,7 +21,15 @@ module.exports = function (app) {
                     {_id: 3,platformID: 1,title: 'Horizon Zero Dawn', platform: 'PS4', developer: 'Guerrilla Games', dlc: 'Yes', releaseDate: '2012-12-26'}]
         }
 
+        ,
+        GameModel: GameModel,
+        PlatformModel: PlatformModel
     };
+
+    platform = new PlatformModel();
+
+
+
 
     /////////////////////////////////
     //platforms
@@ -36,6 +48,7 @@ module.exports = function (app) {
         renderMW(objRepo, 'add_platform'));
 
     app.get('/platforms/delete/:platform_id',
+        getPlatformsMW(objRepo),
         delPlatformsMW(objRepo));
 
 

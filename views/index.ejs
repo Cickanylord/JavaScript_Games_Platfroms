@@ -19,11 +19,11 @@
 
                 <% platforms.forEach(function(platform){ %>
                 <tr>
-                    <td><%= platform.PlatformName %></td>
+                    <td><%= platform.Platform_Name %></td>
                     <td><%= platform._id %></td>
-                    <td><%= platform.manufacturer %></td>
-                    <td><%= platform.manufactureDate %></td>
-                    <td><%= platform.controllerCount %></td>
+                    <td><%= platform.Manufacturer %></td>
+                    <td><%= platform.Manufacture_Date %></td>
+                    <td><%= platform.No_of_Controllers %></td>
                     <td style="width:30px;white-space: nowrap">
                         <a href="/platform/games/<%= platform._id %>" class="btn btn-sm btn-success">Games</a>
                         <a href="/platforms/edit/<%= platform._id %>" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
