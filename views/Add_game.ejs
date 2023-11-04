@@ -15,12 +15,12 @@
             <form method="post">
                 <div class="form-group">
                     <label for="title">Title:</label>
-                    <input value="<%= (typeof games === 'undefined') ? '' : games.title %>" type="text" class="form-control" id="title" name="title" required>
+                    <input value="<%= (typeof games === 'undefined') ? '' : games.Title %>" type="text" class="form-control" id="title" name="title" required>
                 </div>
 
                 <div class="form-group">
                     <label for="developer">Developer:</label>
-                    <input value="<%= (typeof games === 'undefined') ? '' : games.developer %>" type="text"  class="form-control" id="developer" name="developer" required>
+                    <input value="<%= (typeof games === 'undefined') ? '' : games.Developer %>" type="text"  class="form-control" id="developer" name="developer" required>
                 </div>
 
                 <% if (typeof games === 'undefined') { %>
@@ -29,7 +29,7 @@
                         <select name="platform" id="platform" class="form-control">
                             <% if (typeof platforms !== 'undefined') { %>
                                 <% platforms.forEach(function (platform) { %>
-                                    <option value="<%= platform._id %>"><%= platform.PlatformName %></option>
+                                    <option value="<%= platform._id %>"><%= platform.Platform_Name %></option>
                                 <% }) %>
                             <% } %>
                         </select>
@@ -38,12 +38,12 @@
 
                 <div class="form-group">
                     <label for="dlc">DLC:</label>
-                    <input value="<%= (typeof games === 'undefined') ? '' : games.dlc %>" type="text" class="form-control" id="dlc" name="dlc">
+                    <input value="<%= (typeof games === 'undefined') ? '' : games.DLC %>" type="text" class="form-control" id="dlc" name="dlc">
                 </div>
 
                 <div class="form-group">
                     <label for="releaseDate">Release Date:</label>
-                    <input value="<%= (typeof games === 'undefined') ? '' : games.releaseDate %>" type="date" class="form-control" id="releaseDate" name="releaseDate" required>
+                    <input value="<%= (typeof games === 'undefined') ? '' : games.Release_Date %>" type="date" class="form-control" id="releaseDate" name="releaseDate" required>
                 </div>
 
 

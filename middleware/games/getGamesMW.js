@@ -8,19 +8,35 @@ module.exports = function (objectrepository) {
     return function (req, res, next) {
         const DB = objectrepository.DB;
         const gameId = req.params.game_id;
+        const GameModel = requireOption(objectrepository, 'GameModel');
+        const platformId = req.params.platform_id;
+
+        filter = {};
+        if(platformId !== undefined) {
+            filter = {_Platform: platformId};
+        }
 
 
         if (gameId === undefined) {
-            res.locals.games = DB.games;
+            GameModel.find(filter).populate('_Platform')
+                .then(games => {
+                    console.log('more'+games);
+                    res.locals.games = games;
+                    next();
+                }).catch (err => {
+                    console.log(err)
+                });
         } else {
-            const game = DB.games.find(g => g._id.toString() === gameId.toString());
-            if(game === undefined){
-                return res.redirect('/games');
-            } else {
-                res.locals.games = game;
+            GameModel.findById(gameId).populate('_Platform')
+                .then(game => {
+                    //console.log('id'+games);
+                    res.locals.games = game;
+                    next();
+            }).catch(err => {
+                    console.log(err)
+                    next(err);
             }
+            );
         }
-        console.log('games: ' + res.locals.games);
-        next();
     };
 };

@@ -16,7 +16,7 @@ module.exports = function (objectrepository) {
             PlatformModel.find()
                 .then(platforms => {
                     res.locals.platforms = platforms;
-                    console.log(platforms)
+                   //console.log(platforms)
                     next();
                 }).catch (err => {
                     console.log(err)
@@ -25,22 +25,12 @@ module.exports = function (objectrepository) {
             PlatformModel.findById(platformId)
                 .then(platform => {
                     res.locals.platforms = platform;
-                    console.log(platform)
+                    //console.log(platform)
                     next();
                 }).catch (err => {
                 console.log(err)
             });
-            /*
-            const platform = DB.platforms.find(p => p._id.toString() === platformId.toString());
-            if (platform === undefined) {
-                return res.redirect('/');
-            } else {
-                res.locals.platforms = platform;
-            }
-
-             */
         }
-        console.log('platforms: ' + res.locals.platforms);
         //next();
     };
 };

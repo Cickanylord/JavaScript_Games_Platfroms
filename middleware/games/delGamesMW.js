@@ -5,12 +5,18 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     return function (req, res, next) {
-        const DB = objectrepository.DB;
-        const platformId = req.params.game_id;
+        const GameModel = requireOption(objectrepository, 'GameModel');
+        const gameId = req.params.game_id;
 
-        if (platformId !== undefined) {
-            DB.games = DB.games.filter(game => game._id.toString() !== platformId.toString());
+        if(res.locals.games._id.toString() === gameId.toString()) {
+            res.locals.games.deleteOne().then(() => {
+                console.log('deleted');
+                return res.redirect('/games');
+            }).catch (err => {
+                console.log(err);
+                return res.redirect('/games');
+            });
         }
-        return res.redirect('/games');
+
     };
 };

@@ -9,16 +9,19 @@ module.exports = function (objectrepository) {
         const DB = objectrepository.DB;
         const platformId = req.params.platform_id;
         const PlatformModel = requireOption(objectrepository, 'PlatformModel');
+        const GameModel = requireOption(objectrepository, 'GameModel');
 
         if(platformId !== undefined) {
-            res.locals.platforms.deleteOne().then(() => {
-                console.log('deleted');
-                return res.redirect('/');
-            }).catch (err => {
-                console.log(err);
-                return res.redirect('/');
+            GameModel.deleteMany({_Platform: platformId}).then(() => {
+                res.locals.platforms.deleteOne().then(() => {
+                    console.log('deleted');
+                    return res.redirect('/');
+                }).catch(err => {
+                    console.log(err);
+                    return res.redirect('/');
+                });
+
             });
         }
-
     };
 };

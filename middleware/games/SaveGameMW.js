@@ -7,47 +7,35 @@ const requireOption = require('../requireOption');
 module.exports = function (objectrepository) {
     return function (req, res, next) {
         const DB = objectrepository.DB;
-        res.locals.platforms = DB.platforms;
-
-        if (typeof res.locals.platforms === 'undefined' && typeof res.locals.games === 'undefined') {
-            req.body.platform = res.locals.games.platform;
-        }
+        const GameModel = requireOption(objectrepository, 'GameModel');
 
         if ((typeof req.body.title === 'undefined') ||
             (typeof req.body.developer === 'undefined') ||
             (typeof req.body.dlc === 'undefined') ||
-            (typeof req.body.platform === 'undefined') ||
             (typeof req.body.releaseDate === 'undefined')) {
-            console.log('itt: ' +req.body.platform);
             return next();
         }
 
         if (typeof res.locals.games === 'undefined') {
-            res.locals.games = DB.games;
+            res.locals.games = new GameModel();
+        }
+        res.locals.games.Title = req.body.title.toString();
+        res.locals.games.Developer = req.body.developer.toString();
+        res.locals.games.DLC = req.body.dlc.toString();
+        res.locals.games.Release_Date = req.body.releaseDate.toString();
+        if(typeof res.locals.games._Platform === 'undefined') {
+            res.locals.games._Platform = req.body.platform.toString();
         }
 
 
-        games = {
-            _id: (DB.games.length + 1).toString(),
-            platformID: req.body.platform,
-            title: req.body.title.toString(),
-            developer: req.body.developer.toString(),
-            platform: req.body.platform.toString(),
-            dlc: req.body.dlc.toString(),
-            releaseDate: req.body.releaseDate.toString()
-        };
+        res.locals.games.save().then(() => {
+            //console.log('release: ' + req.body.platform.toString());
+            console.log("siker");
+            return res.redirect('/Games');
+        }).catch(err => {
+            console.log(err);
+            next(err);
+        });
 
-
-        const gameId = req.params.game_id;
-        if (gameId !== undefined) {
-            games._id = gameId;
-            games.platformID = DB.games.find(game => game._id.toString() === gameId.toString()).platformID;
-
-            DB.games = DB.games.filter(game => game._id.toString() !== gameId.toString());
-        }
-
-
-        DB.games.push(games);
-        return res.redirect('/games');
     };
 };

@@ -5,7 +5,7 @@ const Game = db.model('Game', {
     Title: String,
     Developer: String,
     DLC: String,
-    Relase_Date: String,
+    Release_Date: String,
 
     _Platform: {
         type: Schema.Types.ObjectId,
