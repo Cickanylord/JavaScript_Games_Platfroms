@@ -8,6 +8,7 @@ module.exports = function (objectrepository) {
     return function (req, res, next) {
         const DB = objectrepository.DB;
         const GameModel = requireOption(objectrepository, 'GameModel');
+        const platformId = req.params.platform_id;
 
         if ((typeof req.body.title === 'undefined') ||
             (typeof req.body.developer === 'undefined') ||
@@ -30,7 +31,10 @@ module.exports = function (objectrepository) {
 
         res.locals.games.save().then(() => {
             //console.log('release: ' + req.body.platform.toString());
-            console.log("siker");
+            console.log("siker: "+platformId);
+            if(platformId !== undefined) {
+                return res.redirect('/platform/games/'+platformId);
+            }
             return res.redirect('/Games');
         }).catch(err => {
             console.log(err);

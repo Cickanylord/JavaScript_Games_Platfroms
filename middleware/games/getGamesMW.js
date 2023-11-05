@@ -13,6 +13,7 @@ module.exports = function (objectrepository) {
 
         filter = {};
         if(platformId !== undefined) {
+            res.locals.platformId = platformId;
             filter = {_Platform: platformId};
         }
 

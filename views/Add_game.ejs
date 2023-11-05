@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label for="platform">Choose a platform:</label>
                         <select name="platform" id="platform" class="form-control">
-                            <% if (typeof platforms !== 'undefined') { %>
+                            <% if (typeof platforms !== 'undefined' ) { %>
                                 <% platforms.forEach(function (platform) { %>
                                     <option value="<%= platform._id %>"><%= platform.Platform_Name %></option>
                                 <% }) %>

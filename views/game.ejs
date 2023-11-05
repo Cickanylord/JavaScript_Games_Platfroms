@@ -21,13 +21,18 @@
         <tr>
             <td><%= game.Title %></td>
             <td><%= game._Platform._id %></td>
-            <td><%= game._Platform.Platform_Name %></td>
+            <td><%= game._Platform.Platform_Name%></td>
             <td><%= game.Developer %></td>
             <td><%= game.DLC %></td>
             <td><%= game.Release_Date %></td>
 
             <td style="width:30px;white-space: nowrap">
-            <a href="/games/edit/<%= game._id %>" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+            <% if (typeof platformId !== 'undefined') {%>
+                <a href="/Platform/edit/<%= platformId%>/<%= game._id %>" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+            <% } else {%>
+                <a href="/games/edit/<%= game._id %>" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+            <%}%>
+
             <a href="/games/delete/<%= game._id %>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
             </td>
         </tr>

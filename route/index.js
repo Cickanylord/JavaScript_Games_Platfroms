@@ -63,7 +63,7 @@ module.exports = function (app) {
     app.use('/Platform/edit/:platform_id/:game_id',
         getGamesMW(objRepo),
         SaveGameMW(objRepo),
-        renderMW(objRepo, 'edit_game'));
+        renderMW(objRepo, 'add_game'));
 
     app.use('/Platform/new/:platform_id',
         SaveGameMW(objRepo),
