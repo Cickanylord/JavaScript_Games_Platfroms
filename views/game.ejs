@@ -29,11 +29,14 @@
             <td style="width:30px;white-space: nowrap">
             <% if (typeof platformId !== 'undefined') {%>
                 <a href="/Platform/edit/<%= platformId%>/<%= game._id %>" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+                <a href=" /Platform/delete/<%= platformId%>/<%= game._id %>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+
             <% } else {%>
                 <a href="/games/edit/<%= game._id %>" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+                <a href="/games/delete/<%= game._id %>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
             <%}%>
 
-            <a href="/games/delete/<%= game._id %>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+
             </td>
         </tr>
         <% }); %>

@@ -71,8 +71,9 @@ module.exports = function (app) {
 
 
     app.get('/Platform/delete/:platform_id/:game_id',
+        getGamesMW(objRepo),
         delGamesMW(objRepo),
-        renderMW(objRepo, 'add_platform'));
+        renderMW(objRepo, 'game'));
 
     /////////////////////////////////
     //games
