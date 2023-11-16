@@ -23,7 +23,7 @@
                     <input value="<%= (typeof games === 'undefined') ? '' : games.Developer %>" type="text"  class="form-control" id="developer" name="developer" required>
                 </div>
 
-                <% if (typeof games === 'undefined') { %>
+                <% if (typeof games === 'undefined' && newGame !== undefined) { %>
                     <div class="form-group">
                         <label for="platform">Choose a platform:</label>
                         <select name="platform" id="platform" class="form-control">

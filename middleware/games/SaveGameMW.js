@@ -10,6 +10,7 @@ module.exports = function (objectrepository) {
         const GameModel = requireOption(objectrepository, 'GameModel');
         const platformId = req.params.platform_id;
 
+        res.locals.newGame = undefined
         if ((typeof req.body.title === 'undefined') ||
             (typeof req.body.developer === 'undefined') ||
             (typeof req.body.dlc === 'undefined') ||
@@ -19,11 +20,17 @@ module.exports = function (objectrepository) {
 
         if (typeof res.locals.games === 'undefined') {
             res.locals.games = new GameModel();
+            if (typeof platformId !== 'undefined') {
+                res.locals.games._Platform = res.locals.platforms;
+                res.locals.games.newGame = true;
+            }
         }
         res.locals.games.Title = req.body.title.toString();
         res.locals.games.Developer = req.body.developer.toString();
         res.locals.games.DLC = req.body.dlc.toString();
         res.locals.games.Release_Date = req.body.releaseDate.toString();
+
+
         if(typeof res.locals.games._Platform === 'undefined') {
             res.locals.games._Platform = req.body.platform.toString();
         }

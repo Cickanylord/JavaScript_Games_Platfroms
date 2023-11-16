@@ -42,7 +42,12 @@
         <% }); %>
       </table>
       <br/>
-      <a href="/games/new" class="btn btn-block btn-primary">Add New Game</a>
+        <% if (typeof platformId !== 'undefined') {%>
+            <a href="/Platform/new/<%= platformId%>" class="btn btn-block btn-primary">Add New Game</a>
+        <% } else {%>
+            <a href="/games/new" class="btn btn-block btn-primary">Add New Game</a>
+        <%}%>
+
     </div>
   </div>
 </div>
